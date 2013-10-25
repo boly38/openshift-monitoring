@@ -1,6 +1,7 @@
 OpenShift Monitor
 
-==Description==
+Description
+------------
 Use case automatise :
 - creation d'une application php
 - curl sur l'appli
@@ -11,7 +12,8 @@ Use case automatise :
 - destruction de l'appli
 
 
-==Installation==
+Installation
+------------
 vm Ubuntu 12.04
 - (optionnel) position du proxy dans /etc/apt/apt.conf
 - install git
@@ -21,5 +23,6 @@ vm Ubuntu 12.04
 - dependances :
   - lib/timeout3 : http://www.bashcookbook.com/bashinfo/source/bash-4.0/examples/scripts/timeout3
 
-==Utilisation==
+Utilisation
+-----------
  ./usecase_metier/openshift_samplephp.sh <--no-color>
