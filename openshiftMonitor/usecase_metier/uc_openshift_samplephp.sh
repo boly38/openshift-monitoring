@@ -9,6 +9,9 @@ SAMPLE_APPNAME=samplephp
 SAMPLE_CARTRIDGE=php-5.3
 SAMPLE_APP_URL=http://samplephp-$USER_DOMAIN.$OPENSHIFT_DOMAIN
 
+# env ruby
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
 #proxies
 http_proxy=
 https_proxy=
