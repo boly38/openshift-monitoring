@@ -23,19 +23,34 @@ vm Ubuntu 12.04
 - dependances :
   - lib/timeout3 : http://www.bashcookbook.com/bashinfo/source/bash-4.0/examples/scripts/timeout3
 - install apache2 (rendre default /var/www disponible)
+<pre>
  sudo apt-get install apache2
+</pre>
 
 - install du cron
+
+<pre>
  crontab -e
 
 # openshift monitor toutes les heures
 0 */1 * * * /home/ubuntu/openshift-monitoring/openshiftMonitor/cron_apache_openshift_usecase
 
+</pre>
+
+
 - premiere fois :
+<pre>
         gem install rhc
         rhc setup --server broker.myopenshift.fr
         rhc account logout
-        add password to .openshift/express.conf https://www.openshift.com/kb/kb-e1067-running-rhc-commands-without-re-entering-password
+</pre>
+- add password to .openshift/express.conf https://www.openshift.com/kb/kb-e1067-running-rhc-commands-without-re-entering-password
 
-sur le broker : ajouter le user openshift-monitor avec le domaine "monitor" et limiter son nombre de gear :
-oo-admin-ctl-user -l openshift-monitor --setmaxgears 3
+
+- adaptez <code>openshiftMonitor/usecase_metier/uc_openshift_samplephp.sh</code> à votre configuration
+
+- sur le broker ajouter le user openshift-monitor avec le domaine "monitor" et limiter son nombre de gear :
+<pre>
+        oo-admin-ctl-user -l openshift-monitor --setmaxgears 3
+</pre>
+
