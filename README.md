@@ -22,7 +22,20 @@ vm Ubuntu 12.04
 - ajout d'option ssh pour le domaine openshift dans ~/.ssh/config : StrictHostKeyChecking no / IdentityFile /home/ubuntu/.ssh/id_rsa / IdentitiesOnly yes
 - dependances :
   - lib/timeout3 : http://www.bashcookbook.com/bashinfo/source/bash-4.0/examples/scripts/timeout3
+- install apache2 (rendre default /var/www disponible)
+ sudo apt-get install apache2
 
-Utilisation
------------
- ./usecase_metier/openshift_samplephp.sh <--no-color>
+- install du cron
+ crontab -e
+
+# openshift monitor toutes les heures
+0 */1 * * * /home/ubuntu/openshift-monitoring/openshiftMonitor/cron_apache_openshift_usecase
+
+- premiere fois :
+        gem install rhc
+        rhc setup --server broker.myopenshift.fr
+        rhc account logout
+        add password to .openshift/express.conf https://www.openshift.com/kb/kb-e1067-running-rhc-commands-without-re-entering-password
+
+sur le broker : ajouter le user openshift-monitor avec le domaine "monitor" et limiter son nombre de gear :
+oo-admin-ctl-user -l openshift-monitor --setmaxgears 3

@@ -1,0 +1,6 @@
+#!/bin/bash
+MONITOR_STATUS=`curl -x proxy:8080 http://192.168.0.1/openshift-monitor 2>/dev/null`
+STATUS_LABEL=`echo "$MONITOR_STATUS"|cut -d ' ' -f 2-`
+STATUS_CODE=`echo "$MONITOR_STATUS"|cut -d ' ' -f 1`
+echo $STATUS_LABEL
+exit $STATUS_CODE

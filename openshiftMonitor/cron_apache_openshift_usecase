@@ -1,0 +1,31 @@
+UC_DIR=/home/ubuntu/openshift-monitoring/openshiftMonitor/usecase_metier
+UC_SCRIPT=$UC_DIR/check_openshift_usecase.sh
+UC_ERRORS=$UC_DIR/getErrorCodes.sh
+
+OPENSHIFT_RESULT=/var/www/openshift-monitor
+OPENSHIFT_ERRORCODE=/var/www/openshift-error-codes
+
+HELP_ERROR_CODE=" - Help about error codes : http://192.168.0.1/openshift-error-codes"
+# produce error codes helper
+$UC_ERRORS > $OPENSHIFT_ERRORCODE
+# play use case
+`$UC_SCRIPT`
+INDICE=$?
+case $INDICE in
+[0]*)
+echo "0 OK - Openshift-monitor PASSED." > $OPENSHIFT_RESULT
+exit
+;;
+11[0-9]*)
+echo "1 WARNING - Openshift-monitor failed with error code $INDICE $HELP_ERROR_CODE" > $OPENSHIFT_RESULT
+exit
+;;
+10[0-9]*)
+echo "2 CRITICAL - Openshift-monitor failed with error code $INDICE $HELP_ERROR_CODE" > $OPENSHIFT_RESULT
+exit
+;;
+*)
+echo "3 UNKNOWN - Openshift status : $INDICE $HELP_ERROR_CODE" > $OPENSHIFT_RESULT
+exit
+;;
+esac
