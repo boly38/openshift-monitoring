@@ -7,4 +7,5 @@ UCERROR_COMMIT_PUSH=1040    # commit and push a new file
 UCERROR_CURL_PUSH=1050      # http get application pushed file
 UCERROR_RHC_DELETE_APP=1100 # rhc delete application
 ## other UCERROR
-# UCERROR 127 : script bash not found, please check your configuration
+# UCERROR 127 : script bash not found, please check cron configuration
+# UCERROR 232 : ruby script not found, please check rvm configuration
