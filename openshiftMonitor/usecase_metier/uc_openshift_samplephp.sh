@@ -78,11 +78,11 @@ function sshApp {
 
 function tailApp {
 	TAIL_TIMEBOX=7
-	STEP="timeout3 -t$TAIL_TIMEBOX rhc tail $SAMPLE_APPNAME -o '-n0'"
+	STEP="timeout3 -t$TAIL_TIMEBOX rhc tail $SAMPLE_APPNAME"
 	echo o $STEP
-	# app tail should provide 3 php log file (timebox $TAIL_TIMEBOX seconds)
-	TAIL_CHECK=`$SCRIPT_PATH/lib/timeout3 -t$TAIL_TIMEBOX rhc tail $SAMPLE_APPNAME -o '-n0'|grep "php/log"|wc -l`
-	if [ ! "$TAIL_CHECK" -ge 2 ];  then echo $(errorMsg $STEP) ; `exit $UCERROR_RHC_TAIL`; fi
+	# app tail should provide apache log file (timebox $TAIL_TIMEBOX seconds)
+	TAIL_CHECK=`$SCRIPT_PATH/lib/timeout3 -t$TAIL_TIMEBOX rhc tail $SAMPLE_APPNAME |grep "notice"|wc -l`
+	if [ ! $TAIL_CHECK -gt 2 ];  then echo $(errorMsg $STEP) ; `exit $UCERROR_RHC_TAIL`; fi
 }
 
 function pushApp {

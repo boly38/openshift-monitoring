@@ -11,6 +11,7 @@ $UC_ERRORS > $OPENSHIFT_ERRORCODE
 # play use case
 `$UC_SCRIPT`
 INDICE=$?
+HELP_ERROR_CODE=`$UC_ERRORS|grep $INDICE`
 case $INDICE in
 [0]*)
 echo "0 OK - Openshift-monitor PASSED." > $OPENSHIFT_RESULT
